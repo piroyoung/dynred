@@ -10,7 +10,7 @@ type RedirectHandler interface {
 	HandleWith301(c *gin.Context)
 }
 
-func HandleWithMeta(url string, c *gin.Context) {
+func handleWithMeta(url string, c *gin.Context) {
 	c.HTML(http.StatusOK, "redirect.tmpl", gin.H{
 		"url": url,
 	})

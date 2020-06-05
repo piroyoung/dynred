@@ -18,7 +18,7 @@ func (n NoteRedirectHandler) getUrl(c *gin.Context) string {
 }
 
 func (n NoteRedirectHandler) HandleWithMeta(c *gin.Context) {
-	HandleWithMeta(n.getUrl(c), c)
+	handleWithMeta(n.getUrl(c), c)
 }
 
 func (n NoteRedirectHandler) HandleWith301(c *gin.Context) {

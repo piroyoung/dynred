@@ -18,5 +18,6 @@ func (s *Server) Run() {
 	s.engine.LoadHTMLGlob("static/templates/*.tmpl")
 	s.engine.GET("m/note/:articleId", s.note.HandleWithMeta)
 	s.engine.GET("s/note/:articleId", s.note.HandleWith301)
+	s.engine.NoRoute(handlers.HandleNotFound)
 	s.engine.Run()
 }
