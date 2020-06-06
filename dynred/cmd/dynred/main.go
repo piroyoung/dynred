@@ -19,6 +19,7 @@ func main() {
 		panic(err)
 	}
 	note := handlers.NewNoteRedirectHandler(noteUserId, repo)
-	s := server.NewServer(engine, note)
+	beacon := handlers.NewBeaconHandler(repo)
+	s := server.NewServer(engine, note, beacon)
 	s.Run()
 }

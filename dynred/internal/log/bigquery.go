@@ -18,10 +18,10 @@ func NewBigQueryRepository(projectId string, datasetId string, tableId string) (
 	}
 	defer client.Close()
 	inserter := client.Dataset(datasetId).Table(tableId).Inserter()
-	return BigQueryRepository{ctx: ctx, inserter: inserter}, nil
+	return &BigQueryRepository{ctx: ctx, inserter: inserter}, nil
 }
 
-func (r BigQueryRepository) Dump(log Log) error {
+func (r *BigQueryRepository) Dump(log Log) error {
 	err := r.inserter.Put(r.ctx, []*Log{&log})
 	if err != nil {
 		return err
