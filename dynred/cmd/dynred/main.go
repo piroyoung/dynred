@@ -11,7 +11,10 @@ import (
 func main() {
 	engine := gin.Default()
 	noteUserId := os.Getenv("NOTE_USER_ID")
-	repo, err := log.NewBigQueryRepository("pizu-279501", "bi", "tracking_logs")
+	projectId := os.Getenv("PROJECT_ID")
+	datasetId := os.Getenv("BQ_DATASET_ID")
+	tableId := os.Getenv("BQ_TABLE_ID")
+	repo, err := log.NewBigQueryRepository(projectId, datasetId, tableId)
 	if err != nil {
 		panic(err)
 	}
