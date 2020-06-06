@@ -8,6 +8,7 @@ func NewMockRepository() Repository {
 	return MockRepository{}
 }
 
-func (r MockRepository) Dump(log Log) {
+func (r MockRepository) Dump(log Log) error {
 	fmt.Println(log)
+	return nil
 }

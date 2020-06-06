@@ -1,5 +1,5 @@
 package log
 
 type Repository interface {
-	Dump(log Log)
+	Dump(log Log) error
 }

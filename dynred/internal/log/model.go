@@ -6,25 +6,25 @@ import (
 )
 
 type Log struct {
-	id           string
-	loggedAt     int64
-	path         string
-	trackingCode string
-	query        string
-	referer      string
-	userAgent    string
-	language     string
+	CookieId     string    `bigquery:"cookie_id"`
+	LoggedAt     time.Time `bigquery:"logged_at"`
+	Path         string    `bigquery:"path"`
+	TrackingCode string    `bigquery:"tracking_code"`
+	Query        string    `bigquery:"query"`
+	Referer      string    `bigquery:"referer"`
+	UserAgent    string    `bigquery:"user_agent"`
+	Language     string    `bigquery:"language"`
 }
 
 func NewLog(c *gin.Context) Log {
 	return Log{
-		id:           c.Request.Header.Get("Cookie"),
-		loggedAt:     time.Now().Unix(),
-		path:         c.Request.URL.Path,
-		trackingCode: c.Query("t"),
-		query:        c.Request.URL.RawQuery,
-		referer:      c.Request.Header.Get("Referer"),
-		userAgent:    c.Request.Header.Get("User-Agent"),
-		language:     c.Request.Header.Get("Accept-Language"),
+		CookieId:     c.Request.Header.Get("Cookie"),
+		LoggedAt:     time.Now(),
+		Path:         c.Request.URL.Path,
+		TrackingCode: c.Query("t"),
+		Query:        c.Request.URL.RawQuery,
+		Referer:      c.Request.Header.Get("Referer"),
+		UserAgent:    c.Request.Header.Get("User-Agent"),
+		Language:     c.Request.Header.Get("Accept-Language"),
 	}
 }

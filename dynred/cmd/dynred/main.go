@@ -11,7 +11,10 @@ import (
 func main() {
 	engine := gin.Default()
 	noteUserId := os.Getenv("NOTE_USER_ID")
-	repo := log.NewMockRepository()
+	repo, err := log.NewBigQueryRepository("pizu-279501", "bi", "tracking_logs")
+	if err != nil {
+		panic(err)
+	}
 	note := handlers.NewNoteRedirectHandler(noteUserId, repo)
 	s := server.NewServer(engine, note)
 	s.Run()
