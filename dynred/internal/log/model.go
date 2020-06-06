@@ -2,6 +2,8 @@ package log
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"strings"
 	"time"
 )
 
@@ -18,7 +20,7 @@ type Log struct {
 
 func NewLog(c *gin.Context) Log {
 	return Log{
-		CookieId:     c.Request.Header.Get("Cookie"),
+		CookieId:     getId(c),
 		LoggedAt:     time.Now(),
 		Path:         c.Request.URL.Path,
 		TrackingCode: c.Query("t"),
@@ -27,4 +29,15 @@ func NewLog(c *gin.Context) Log {
 		UserAgent:    c.Request.Header.Get("User-Agent"),
 		Language:     c.Request.Header.Get("Accept-Language"),
 	}
+}
+
+func getId(c *gin.Context) string {
+	id, err := c.Cookie("id")
+	if err != nil {
+		newId, _ := uuid.NewUUID()
+		domain := strings.Split(c.Request.Host, ":")[0]
+		c.SetCookie("id", newId.String(), 86400*365, "/", domain, false, true)
+		return newId.String()
+	}
+	return id
 }
