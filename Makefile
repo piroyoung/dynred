@@ -1,5 +1,5 @@
 IMAGE_NAME=pizu/dynred
-TAG=0.0.5
+TAG=0.0.6
 NOTE_USER_ID=your_id
 PROJECT_ID=pizu-279501
 
