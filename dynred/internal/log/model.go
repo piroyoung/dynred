@@ -9,6 +9,7 @@ type Log struct {
 	id        string
 	loggedAt  int64
 	path      string
+	tag       string
 	query     string
 	referer   string
 	userAgent string
@@ -20,6 +21,7 @@ func NewLog(c *gin.Context) Log {
 		id:        c.Request.Header.Get("Cookie"),
 		loggedAt:  time.Now().Unix(),
 		path:      c.Request.URL.Path,
+		tag:       c.Query("t"),
 		query:     c.Request.URL.RawQuery,
 		referer:   c.Request.Header.Get("Referer"),
 		userAgent: c.Request.Header.Get("User-Agent"),
