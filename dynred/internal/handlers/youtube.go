@@ -10,8 +10,8 @@ type YouTubeRedirectHandler struct {
 	repo log.Repository
 }
 
-func NewYouTubeRedirectHandler(userId string, repo log.Repository) RedirectHandler {
-	return &NoteRedirectHandler{userId: userId, repo: repo}
+func NewYouTubeRedirectHandler(repo log.Repository) RedirectHandler {
+	return &YouTubeRedirectHandler{repo: repo}
 }
 
 func (y *YouTubeRedirectHandler) getUrl(c *gin.Context) string {

@@ -19,7 +19,9 @@ func main() {
 		panic(err)
 	}
 	note := handlers.NewNoteRedirectHandler(noteUserId, repo)
+	youtube := handlers.NewYouTubeRedirectHandler(repo)
+	amazon := handlers.NewAmazonRedirectHandler(repo)
 	beacon := handlers.NewBeaconHandler(repo)
-	s := server.NewServer(engine, note, beacon)
+	s := server.NewServer(engine, note, youtube, amazon, beacon)
 	s.Run()
 }

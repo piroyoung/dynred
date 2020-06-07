@@ -10,8 +10,8 @@ type AmazonRedirectHandler struct {
 	repo log.Repository
 }
 
-func NewAmazonRedirectHandler(userId string, repo log.Repository) RedirectHandler {
-	return &NoteRedirectHandler{userId: userId, repo: repo}
+func NewAmazonRedirectHandler(repo log.Repository) RedirectHandler {
+	return &AmazonRedirectHandler{repo: repo}
 }
 
 func (y *AmazonRedirectHandler) getUrl(c *gin.Context) string {
