@@ -11,7 +11,7 @@ type NoteRedirectHandler struct {
 	repo   log.Repository
 }
 
-func NewNoteRedirectHandler(userId string, repo log.Repository) *NoteRedirectHandler {
+func NewNoteRedirectHandler(userId string, repo log.Repository) RedirectHandler {
 	return &NoteRedirectHandler{userId: userId, repo: repo}
 }
 
