@@ -1,5 +1,5 @@
 IMAGE_NAME=pizu/dynred
-TAG=0.0.2
+TAG=0.0.8
 NOTE_USER_ID=your_id
 PROJECT_ID=pizu-279501
 
@@ -8,7 +8,7 @@ build:
 	docker build -t ${IMAGE_NAME}:latest .
 .PHONY: build
 
-push:
+push: build
 	docker tag ${IMAGE_NAME}:${TAG} asia.gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${TAG}
 	docker push asia.gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${TAG}
 .PHONY: push
