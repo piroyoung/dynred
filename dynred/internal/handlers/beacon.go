@@ -22,10 +22,7 @@ func NewBeaconHandler(repo log.Repository) BeaconHandler {
 }
 
 func (b *BeaconHandler) Handle(c *gin.Context) {
-	err := b.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go b.repo.Dump(log.NewLog(c))
 	c.Header("Cache-Control", "no-cache")
 	c.Data(http.StatusOK, "image/png", *b.img)
 }
