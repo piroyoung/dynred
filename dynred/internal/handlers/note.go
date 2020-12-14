@@ -20,17 +20,11 @@ func (n *NoteRedirectHandler) getUrl(c *gin.Context) string {
 }
 
 func (n *NoteRedirectHandler) HandleWithMeta(c *gin.Context) {
-	err := n.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go n.repo.Dump(log.NewLog(c))
 	handleWithMeta(n.getUrl(c), c)
 }
 
 func (n *NoteRedirectHandler) HandleWith301(c *gin.Context) {
-	err := n.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go n.repo.Dump(log.NewLog(c))
 	c.Redirect(http.StatusMovedPermanently, n.getUrl(c))
 }

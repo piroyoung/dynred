@@ -19,17 +19,11 @@ func (y *YouTubeRedirectHandler) getUrl(c *gin.Context) string {
 }
 
 func (y *YouTubeRedirectHandler) HandleWithMeta(c *gin.Context) {
-	err := y.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go y.repo.Dump(log.NewLog(c))
 	handleWithMeta(y.getUrl(c), c)
 }
 
 func (y *YouTubeRedirectHandler) HandleWith301(c *gin.Context) {
-	err := y.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go y.repo.Dump(log.NewLog(c))
 	c.Redirect(http.StatusMovedPermanently, y.getUrl(c))
 }

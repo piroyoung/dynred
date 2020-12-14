@@ -1,7 +1,7 @@
-IMAGE_NAME=pizu/dynred
-TAG=0.0.8
+IMAGE_NAME=tracking/dynred
+TAG=0.0.9
 NOTE_USER_ID=your_id
-PROJECT_ID=pizu-279501
+PROJECT_ID=soto-goto
 
 build:
 	docker build -t ${IMAGE_NAME}:${TAG} .

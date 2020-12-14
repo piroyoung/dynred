@@ -19,17 +19,11 @@ func (y *AmazonRedirectHandler) getUrl(c *gin.Context) string {
 }
 
 func (y *AmazonRedirectHandler) HandleWithMeta(c *gin.Context) {
-	err := y.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go y.repo.Dump(log.NewLog(c))
 	handleWithMeta(y.getUrl(c), c)
 }
 
 func (y *AmazonRedirectHandler) HandleWith301(c *gin.Context) {
-	err := y.repo.Dump(log.NewLog(c))
-	if err != nil {
-		panic(err)
-	}
+	go y.repo.Dump(log.NewLog(c))
 	c.Redirect(http.StatusMovedPermanently, y.getUrl(c))
 }
