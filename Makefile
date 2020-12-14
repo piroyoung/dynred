@@ -1,5 +1,5 @@
 IMAGE_NAME=tracking/dynred
-TAG=0.0.8
+TAG=0.0.9
 NOTE_USER_ID=your_id
 PROJECT_ID=soto-goto
 
